@@ -60,4 +60,7 @@ jobs:
             -e SMTP_PORT=${{ secrets.SMTP_PORT }} \
             -e REDIS_HOST=${{ secrets.REDIS_HOST }} \
             -e REDIS_PORT=${{ secrets.REDIS_PORT }} \
+            -e GOOGLE_APPLICATION_CREDENTIALS=${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }} \
+            -e CLOUD_BUCKET_NAME=${{ secrets.CLOUD_BUCKET_NAME }} \
+            -e CLOUD_PROJECT_ID=${{ secrets.CLOUD_PROJECT_ID }} \
             ${{ secrets.DOCKERHUB_USERNAME }}/imgoraihpeduli
