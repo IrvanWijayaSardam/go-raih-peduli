@@ -64,7 +64,7 @@ jobs:
             -e REDIS_HOST=${{ secrets.REDIS_HOST }} \
             -e REDIS_PORT=${{ secrets.REDIS_PORT }} \
             -e APPLICATION_DEFAULT_CREDENTIALS=$(${{secrets.APPLICATION_DEFAULT_CREDENTIALS}}) \
-            -e GOOGLE_APPLICATION_CREDENTIALS=${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }} \
+            -e GOOGLE_APPLICATION_CREDENTIALS=$(${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}) \
             -e CLOUD_BUCKET_NAME=${{ secrets.CLOUD_BUCKET_NAME }} \
             -e CLOUD_PROJECT_ID=${{ secrets.CLOUD_PROJECT_ID }} \
             ${{ secrets.DOCKERHUB_USERNAME }}/imgoraihpeduli
