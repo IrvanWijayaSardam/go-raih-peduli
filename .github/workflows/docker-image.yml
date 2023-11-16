@@ -23,6 +23,7 @@ jobs:
       -
         name: Fetch service account key
         run: |
+          mkdir -p $GITHUB_WORKSPACE/credentials
           echo "${{ secrets.APPLICATION_DEFAULT_CREDENTIALS }}" > $GITHUB_WORKSPACE/credentials/application_default_credentials.json
       -
         name: Build and push
