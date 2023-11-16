@@ -1,6 +1,8 @@
 package config
 
 import (
+	"encoding/json"
+	"io"
 	"os"
 
 	"github.com/sirupsen/logrus"
@@ -88,6 +90,21 @@ func LoadCloudStorageConfig() *CloudStorageConfig {
 	var res = new(CloudStorageConfig)
 
 	if val, found := os.LookupEnv("GOOGLE_APPLICATION_CREDENTIALS"); found {
+		jsonBytes, err := json.Marshal(val)
+		if err != nil {
+			panic(err)
+		}
+
+		file, err := os.Create("credentials.json")
+		if err != nil {
+			panic(err)
+		}
+		defer file.Close()
+
+		_, err = io.WriteString(file, string(jsonBytes))
+		if err != nil {
+			panic(err)
+		}
 		res.GOOGLE_APPLICATION_CREDENTIALS = val
 	}
 
