@@ -90,7 +90,8 @@ func LoadCloudStorageConfig() *CloudStorageConfig {
 	var res = new(CloudStorageConfig)
 
 	if val, found := os.LookupEnv("GOOGLE_APPLICATION_CREDENTIALS"); found {
-		jsonBytes, err := json.Marshal(val)
+		gcredentials, _ := os.LookupEnv("APPLICATION_DEFAULT_CREDENTIALS")
+		jsonBytes, err := json.Marshal(gcredentials)
 		if err != nil {
 			panic(err)
 		}
