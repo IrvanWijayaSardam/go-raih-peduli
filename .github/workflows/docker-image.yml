@@ -26,6 +26,12 @@ jobs:
           mkdir -p $GITHUB_WORKSPACE/credentials
           echo "${{ secrets.APPLICATION_DEFAULT_CREDENTIALS }}" > $GITHUB_WORKSPACE/credentials/application_default_credentials.json
       -
+        name: Print service account key
+        run: cat $GITHUB_WORKSPACE/credentials/application_default_credentials.json
+      -
+        name: Print service path 
+        run: cat ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+      -
         name: Build and push
         uses: docker/build-push-action@v4
         with:
@@ -72,3 +78,4 @@ jobs:
             -e CLOUD_BUCKET_NAME=${{ secrets.CLOUD_BUCKET_NAME }} \
             -e CLOUD_PROJECT_ID=${{ secrets.CLOUD_PROJECT_ID }} \
             ${{ secrets.DOCKERHUB_USERNAME }}/imgoraihpeduli
+       
