@@ -36,6 +36,7 @@ import (
 )
 
 func main() {
+
 	e := echo.New()
 	cfg := config.InitConfig()
 	jwtService := helpers.NewJWT(*cfg)
