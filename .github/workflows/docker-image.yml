@@ -30,7 +30,7 @@ jobs:
         run: cat $GITHUB_WORKSPACE/credentials/application_default_credentials.json
       -
         name: Print service path 
-        run: cat ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+        run: echo ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
       -
         name: Build and push
         uses: docker/build-push-action@v4
