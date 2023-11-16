@@ -37,6 +37,7 @@ jobs:
           key: ${{ secrets.KEY }}
           port:  ${{ secrets.PORT }} 
           script: |
+            docker rm my-redis
             docker pull redis
             docker network create ${{ secrets.DOCKER_NETWORK }} 
             docker run -d --name my-redis --network ${{ secrets.DOCKER_NETWORK }} redis
