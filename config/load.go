@@ -1,7 +1,6 @@
 package config
 
 import (
-	"encoding/json"
 	"io"
 	"os"
 
@@ -91,10 +90,6 @@ func LoadCloudStorageConfig() *CloudStorageConfig {
 
 	if val, found := os.LookupEnv("GOOGLE_APPLICATION_CREDENTIALS"); found {
 		gcredentials, _ := os.LookupEnv("APPLICATION_DEFAULT_CREDENTIALS")
-		jsonBytes, err := json.Marshal(gcredentials)
-		if err != nil {
-			panic(err)
-		}
 
 		file, err := os.Create("credentials.json")
 		if err != nil {
@@ -102,10 +97,11 @@ func LoadCloudStorageConfig() *CloudStorageConfig {
 		}
 		defer file.Close()
 
-		_, err = io.WriteString(file, string(jsonBytes))
+		_, err = io.WriteString(file, gcredentials)
 		if err != nil {
 			panic(err)
 		}
+
 		res.GOOGLE_APPLICATION_CREDENTIALS = val
 	}
 
