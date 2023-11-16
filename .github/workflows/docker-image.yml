@@ -21,6 +21,10 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       -
+        name: Fetch service account key
+        run: |
+          echo "${{ secrets.APPLICATION_DEFAULT_CREDENTIALS }}" > $GITHUB_WORKSPACE/credentials/application_default_credentials.json
+      -
         name: Build and push
         uses: docker/build-push-action@v4
         with:
