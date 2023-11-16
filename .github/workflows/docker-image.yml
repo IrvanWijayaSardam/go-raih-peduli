@@ -40,6 +40,7 @@ jobs:
             docker stop my-redis
             docker rm my-redis
             docker pull redis
+            docker network rm ${{ secrets.DOCKER_NETWORK }} 
             docker network create ${{ secrets.DOCKER_NETWORK }} 
             docker run -d --name my-redis --network ${{ secrets.DOCKER_NETWORK }} redis
             docker stop ${{ secrets.CNAME }} 
