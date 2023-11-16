@@ -21,11 +21,6 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       -
-        name: Fetch service account key
-        run: |
-          mkdir -p $GITHUB_WORKSPACE/credentials
-          echo "${{ secrets.APPLICATION_DEFAULT_CREDENTIALS }}" > $GITHUB_WORKSPACE/credentials/application_default_credentials.json
-      -
         name: Build and push
         uses: docker/build-push-action@v4
         with:
@@ -68,6 +63,7 @@ jobs:
             -e SMTP_PORT=${{ secrets.SMTP_PORT }} \
             -e REDIS_HOST=${{ secrets.REDIS_HOST }} \
             -e REDIS_PORT=${{ secrets.REDIS_PORT }} \
+            -e APPLICATION_DEFAULT_CREDENTIALS=$(${{secrets.APPLICATION_DEFAULT_CREDENTIALS}}) \
             -e GOOGLE_APPLICATION_CREDENTIALS=${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }} \
             -e CLOUD_BUCKET_NAME=${{ secrets.CLOUD_BUCKET_NAME }} \
             -e CLOUD_PROJECT_ID=${{ secrets.CLOUD_PROJECT_ID }} \
