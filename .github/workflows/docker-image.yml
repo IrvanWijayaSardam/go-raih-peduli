@@ -47,7 +47,6 @@ jobs:
             docker rm ${{ secrets.CNAME }} 
             docker rmi -f ${{ secrets.DOCKERHUB_USERNAME }}/imgoraihpeduli
             docker run -d -p 8000:8000 \
-              -v /home/irfanwijayasardam/credentials:/app/app:ro \
               --name ${{ secrets.CNAME }} \
               --network ${{ secrets.DOCKER_NETWORK }} \
               -e DB_USER=${{ secrets.DB_USER }} \
@@ -66,6 +65,7 @@ jobs:
               -e GOOGLE_APPLICATION_CREDENTIALS=${{secrets.GOOGLE_APPLICATION_CREDENTIALS}} \
               -e CLOUD_BUCKET_NAME=${{secrets.CLOUD_BUCKET_NAME}} \
               -e CLOUD_PROJECT_ID=${{secrets.CLOUD_PROJECT_ID}} \
+              -e APPLICATION_DEFAULT_CREDENTIALS="$(echo '${{secrets.APPLICATION_DEFAULT_CREDENTIALS}}')" \
               ${{ secrets.DOCKERHUB_USERNAME }}/imgoraihpeduli
 
        
